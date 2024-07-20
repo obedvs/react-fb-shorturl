@@ -7,6 +7,7 @@ const color = {
   'primary': 'hover:bg-blue-900 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 text-white bg-blue-700',
   'secondary': 'hover:bg-purple-900 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800 text-white bg-purple-700',
   'danger': 'hover:bg-red-900 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 text-white bg-red-700',
+  'white': 'bg-white hover:bg-gray-200 focus:ring-blue-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-blue-800 text-blue-700 dark:text-blue-300 border border-blue-700 dark:border-blue-300',
 }
 
 const Navlink = ({ to, children }) => {
@@ -14,7 +15,7 @@ const Navlink = ({ to, children }) => {
     <li>
       <NavLink
         to={to}
-        className="hover:bg-blue-900 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 block p-2 text-gray-900 rounded"
+        className="hover:bg-blue-900 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 block px-2 py-1 text-gray-900 rounded"
         >
         {children}
       </NavLink>
@@ -35,7 +36,7 @@ const NavButton = ({ children, onClick, variant = 'primary' }) => {
 const NavButtonLink = ({ to, children, variant = 'primary' }) => {
   return (
     <Link to={to}
-      className={`focus:ring-4 focus:outline-none px-4 py-2 text-sm font-medium text-center rounded-lg ${color[variant]}`}
+      className={`focus:ring-4 focus:outline-none px-4 py-2 text-sm font-medium text-center rounded-lg text-nowrap ${color[variant]}`}
     >
       {children}
     </Link>
@@ -81,8 +82,8 @@ const Navbar = () => {
             <NavButton onClick={handleSignOut} variant="danger">Cerrar Sesión</NavButton>
           ) : (
             <>
-            <NavButtonLink to="/login">Iniciar Sesión</NavButtonLink>
-            <NavButtonLink to="/register" variant="secondary">Registarse</NavButtonLink>
+            <NavButtonLink to="/login" variant="white">Iniciar Sesión</NavButtonLink>
+            <NavButtonLink to="/register">Registarse</NavButtonLink>
             </>
           )}
         </div>

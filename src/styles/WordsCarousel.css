@@ -1,0 +1,32 @@
+/* src/WordCarousel.css */
+.word-carousel {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 1rem 0;
+}
+
+.word-carousel-inner {
+  display: inline-block;
+  animation: scroll 20s linear infinite;
+}
+
+.word-carousel-item {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.word-carousel-item::after {
+  content: "•";
+  margin-left: 0.5rem;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-20%);
+  }
+}
