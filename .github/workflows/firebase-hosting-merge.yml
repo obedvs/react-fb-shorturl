@@ -7,7 +7,7 @@ on:
     branches:
       - main
 env:
-  VITE_FB_APIKE: ${{ secrets.VITE_FB_APIKE }}
+  VITE_FB_APIKEY: ${{ secrets.VITE_FB_APIKEY }}
   VITE_FB_AUTHDOMAIN: ${{ secrets.VITE_FB_AUTHDOMAIN }}
   VITE_FB_PROJECTID: ${{ secrets.VITE_FB_PROJECTID }}
   VITE_FB_STORAGEBUCKET: ${{ secrets.VITE_FB_STORAGEBUCKET }}
