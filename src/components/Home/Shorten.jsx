@@ -4,7 +4,7 @@ const Shorten = () => {
   return (
     <div className="bg-[#101010] w-full">
     <section className="md:flex-row md:px-10 flex flex-col items-center justify-between max-w-6xl gap-2 px-2 pt-10 mx-auto">
-      <h4 className="text-3xl font-bold text-white">SHORTEN YOUR LINK NOW</h4>
+      <h4 className="text-3xl font-bold text-center text-white">SHORTEN YOUR LINK NOW</h4>
       <form
         className="flex flex-row items-center justify-center p-1 bg-gray-800 rounded-lg"
         onSubmit={(e) => e.preventDefault()}

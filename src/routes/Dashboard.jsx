@@ -68,7 +68,7 @@ const Dashboard = () => {
   }
 
   return (
-    <section className="mt-20">
+    <section className="md:px-10 max-w-6xl px-2 mx-auto mt-20">
       <Title texto="Acorta tu URL" />
 
       <form onSubmit={handleSubmit(onSubmit)} className="md:flex-row gap-x-4 flex flex-col items-center justify-center w-full max-w-lg px-4 mx-auto mb-4">

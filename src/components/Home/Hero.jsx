@@ -74,7 +74,7 @@ const Hero = () => {
               <time dateTime="2024-10-17">17 October 2024</time>
             </div>
           </footer>
-          <div className="size-16 -bottom-10 right-10 absolute z-10 bg-blue-600 rounded-full"></div>
+          <div className="size-16 -bottom-10 right-10 absolute z-10 flex items-center justify-center text-3xl bg-blue-600 rounded-full">🔗</div>
         </div>
         <div className="md:w-4/5 -z-20 w-full p-4 border-2 border-gray-200 rounded-lg">
           <header className="flex items-center justify-between w-full mb-4">

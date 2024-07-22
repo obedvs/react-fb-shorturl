@@ -56,7 +56,7 @@ const Navbar = () => {
 
   return (
     <nav className="dark:bg-gray-900 start-0 dark:border-gray-600 fixed top-0 z-20 w-full bg-white border-b border-gray-200">
-      <div className="flex items-center justify-between max-w-screen-xl p-4 mx-auto">
+      <div className="md:px-10 flex items-center justify-between max-w-6xl p-4 mx-auto">
         <Link to="/" className="flex items-center w-auto">
           <span className="whitespace-nowrap dark:text-white sm:text-2xl self-center text-lg font-semibold">
             URLShort

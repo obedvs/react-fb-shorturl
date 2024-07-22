@@ -1,3 +1,4 @@
+import Footer from '../components/Footer.jsx'
 import About from '../components/Home/About.jsx'
 import Banner from '../components/Home/Banner.jsx'
 import Companies from '../components/Home/Companies.jsx'
@@ -16,6 +17,7 @@ const Home = () => {
       <Companies />
       <Why />
       <Banner />
+      <Footer />
     </main>
   )
 }

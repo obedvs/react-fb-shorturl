@@ -11,10 +11,10 @@ const About = () => {
         </article>
         <article className="rounded-xl md:flex-row flex flex-col flex-wrap items-center justify-around w-full gap-2 p-2 bg-gray-800">
             <Button text="1 Put Link" color="blue" />
-            <Button text="2 Click Shortener" color="gray" />
-            <Button text="3 Create Custom URL" color="gray" />
-            <Button text="4 Create QR Code" color="gray" />
-            <Button text="5 Put Tracker Link" color="gray" />
+            <Button text="2 Click Shortener" color="gray-2" />
+            <Button text="3 Create Custom URL" color="gray-2" />
+            <Button text="4 Create QR Code" color="gray-2" />
+            <Button text="5 Put Tracker Link" color="gray-2" />
         </article>
     </section>
     </div>

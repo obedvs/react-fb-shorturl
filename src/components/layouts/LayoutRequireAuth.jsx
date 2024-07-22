@@ -10,7 +10,7 @@ const LayoutRequireAuth = () => {
     return <Navigate to="/login" />;
   }
   return (
-    <div className="px-4 mx-auto mt-20">
+    <div className="mt-20">
       <Outlet />
     </div>
   );
