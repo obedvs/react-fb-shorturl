@@ -69,25 +69,25 @@ const Dashboard = () => {
 
   return (
     <section className="md:px-10 max-w-6xl px-2 mx-auto mt-20">
-      <Title texto="Acorta tu URL" />
+      <Title texto="Short your URL" />
 
       <form onSubmit={handleSubmit(onSubmit)} className="md:flex-row gap-x-4 flex flex-col items-center justify-center w-full max-w-lg px-4 mx-auto mb-4">
-        <FormInput type="text" placeholder="Ejemplo: https://example.com" {...register("url", { required, pattern: patternUrl })} label='Ingresa la URL' error={errors.url} />
-        {newOriginID ? <Button text='Editar URL' type="submit" color="yellow" loading={loading.updateData} /> : <Button text='Generar URL' type="submit" loading={loading.addData} />}
+        <FormInput type="text" placeholder="https://example.com" {...register("url", { required, pattern: patternUrl })} label='Write the URL' error={errors.url} />
+        {newOriginID ? <Button text='Edit URL' type="submit" color="yellow" loading={loading.updateData} /> : <Button text='Generate URL' type="submit" loading={loading.addData} />}
       </form>
 
       <article className="md:grid-cols-2 lg:grid-cols-3 grid w-full max-w-6xl grid-cols-1 gap-4 mx-auto">
       {loading.getData ?
-        <p>Cargando...</p>
+        <p>Loading...</p>
       :
       data.map(({nanoid, origin, uid}) => (
         <div key={nanoid} className="dark:bg-gray-800 dark:border-gray-700 w-full p-6 bg-white border border-gray-200 rounded-lg shadow">
           <h5 className="dark:text-white mb-2 text-xl font-bold tracking-tight text-gray-900">{pathUrl}/{nanoid}</h5>
           <p className="dark:text-gray-400 mb-3 font-normal text-gray-700">{origin}</p>
           <div className="flex space-x-2">
-            <Button text='Eliminar' type="button" loading={loading[nanoid]} color="red" onClick={() => handleDelete(nanoid)}/>
-            <Button text='Editar' type="button" color="yellow" onClick={() => handleEdit(nanoid, origin)}/>
-            <Button text={copy[nanoid] ? 'Copiado' : 'Copiar'} type="button" color="indigo" onClick={() => handleCopy(nanoid)}/>
+            <Button text='Delete' type="button" loading={loading[nanoid]} color="red" onClick={() => handleDelete(nanoid)}/>
+            <Button text='Edit' type="button" color="yellow" onClick={() => handleEdit(nanoid, origin)}/>
+            <Button text={copy[nanoid] ? 'Copied' : 'Copy'} type="button" color="indigo" onClick={() => handleCopy(nanoid)}/>
           </div>
         </div>
       ))}

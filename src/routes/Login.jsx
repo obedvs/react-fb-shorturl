@@ -41,23 +41,23 @@ const Login = () => {
 
   return (
     <>
-      <Title texto="Inicia Sesión" />
+      <Title texto="Log In" />
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-sm mx-auto">
         <FormInput
           type="email"
           placeholder="example@email.com"
           {...register("email", { required, pattern: patternEmail })}
-          label="Correo Electrónico"
+          label="Email"
           error={errors.email}
         />
         <FormInput
           type="password"
-          placeholder="123456"
+          placeholder="Type your password"
           {...register("password", { required })}
-          label="Contraseña"
+          label="Password"
           error={errors.password}
         />
-        <Button text="Iniciar sesión" type="submit" loading={loading} color="blue" />
+        <Button text="Log In" type="submit" loading={loading} color="blue" />
       </form>
     </>
   );

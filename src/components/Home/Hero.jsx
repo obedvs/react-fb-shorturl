@@ -28,7 +28,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="md:grid-cols-2 gap-y-4 md:px-10 grid w-full max-w-6xl px-2 pt-4 pb-20 mx-auto">
+    <section className="md:grid-cols-2 gap-y-4 md:px-10 grid w-full max-w-6xl px-2 py-4 mx-auto">
       <article className="gap-y-4 flex flex-col items-start w-full">
         <span className="bg-blue-100/60 px-4 py-2 text-xs font-semibold text-blue-700 rounded-full">
           Let's make with simply one click. 👈🏻

@@ -33,7 +33,7 @@ const ButtonLoading = ({ color = 'purple' }) => {
           fill="currentColor"
         />
       </svg>
-      Cargando...
+      Loading...
     </button>
   );
 };

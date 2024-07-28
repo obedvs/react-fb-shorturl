@@ -13,11 +13,11 @@ export const useFirestore = () => {
     addData: false,
     updateData: false
   });
-  const uid = auth.currentUser.uid;
-
+  
   const getData = async () => {
     try {
       setLoading(prev => ({ ...prev, getData: true }));
+      const uid = auth.currentUser.uid;
       const q = query(collection(db, "urls"), where("uid", "==", uid));
       const querySnapshot = await getDocs(q);
       const dataDB = querySnapshot.docs.map(doc => doc.data());

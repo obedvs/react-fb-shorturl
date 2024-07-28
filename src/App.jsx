@@ -32,7 +32,7 @@ const App = () => {
 
         <Route path="/dashboard" element={<LayoutRequireAuth />}>
           <Route index element={<Dashboard />} />
-          <Route path="perfil" element={<Perfil />} />
+          {/* <Route path="perfil" element={<Perfil />} /> */}
         </Route>
 
         <Route path="/" element={<LayoutContainerForm />}>

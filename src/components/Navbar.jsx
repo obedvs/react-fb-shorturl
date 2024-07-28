@@ -63,27 +63,27 @@ const Navbar = () => {
           </span>
         </Link>
         <div className="sm:w-3/5 flex items-center justify-start w-auto">
-          <ul className="sm:gap-x-4 flex items-center font-medium">
+          <ul className="sm:gap-x-2 flex items-center font-medium">
             {user ? (
               <>
-                <Navlink to="/">Inicio</Navlink>
+                <Navlink to="/">Home</Navlink>
                 <Navlink to="/dashboard">Dashboard</Navlink>
                 {/* <Navlink to="/dashboard/perfil">Perfil</Navlink> */}
               </>
             ) : (
               <>
-                <Navlink to="/">Inicio</Navlink>
+                <Navlink to="/">Home</Navlink>
               </>
             )}
           </ul>
         </div>
-        <div className="gap-x-4 sm:w-1/5 flex justify-end w-auto">
+        <div className="gap-x-2 sm:w-1/5 flex justify-end w-auto">
           {user ? (
-            <NavButton onClick={handleSignOut} variant="danger">Cerrar Sesión</NavButton>
+            <NavButton onClick={handleSignOut} variant="danger">Log Out</NavButton>
           ) : (
             <>
-            <NavButtonLink to="/login" variant="white">Iniciar Sesión</NavButtonLink>
-            <NavButtonLink to="/register">Registarse</NavButtonLink>
+            <NavButtonLink to="/login" variant="white">Log In</NavButtonLink>
+            <NavButtonLink to="/register">Sign Up</NavButtonLink>
             </>
           )}
         </div>

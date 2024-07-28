@@ -1,29 +1,42 @@
-const words = ["MICROSITE", "CUSTOM LINK", "MANAGE", "SHORTLINK"];
+const words = ["MICROSITE", "CUSTOM LINK", "MANAGE", "SHORTLINK", "ANALYZE"];
 
-import '../../styles/WordsCarousel.css';
+import { useEffect } from "react";
+import "../../styles/WordsCarousel.css";
 
 const WordsCarousel = () => {
+  useEffect(() => {
+    const scrollers = document.querySelectorAll(".scroller");
+
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      addAnimation();
+    }
+
+    function addAnimation() {
+      scrollers.forEach((scroller) => {
+        scroller.setAttribute("data-animated", true);
+
+        const scrollerInner = scroller.querySelector(".scroller__inner");
+        const scrollerContent = Array.from(scrollerInner.children);
+
+        scrollerContent.forEach((item) => {
+          const duplicatedItem = item.cloneNode(true);
+          duplicatedItem.setAttribute("aria-hidden", true);
+          scrollerInner.appendChild(duplicatedItem);
+        });
+      });
+    }
+  }, []);
+
   return (
-    <div className='overflow-x-clip relative flex w-full'>
-    <section className="word-carousel w-full text-white bg-blue-600">
-      <article className="word-carousel-inner">
-        {words.concat(words).concat(words).map((word, index) => (
-          <div key={index} className="word-carousel-item">
-            {word}
-          </div>
-        ))}
+    <section className="md:px-10 w-full max-w-6xl mx-auto">
+      <article className="scroller text-white bg-blue-600" data-speed="slow">
+        <ul className="tag-list scroller__inner">
+          {words.map((word, index) => (
+            <li key={index}>{word}</li>
+          ))}
+        </ul>
       </article>
     </section>
-    <section className="word-carousel -z-10 -rotate-[2deg] absolute -translate-y-[50%] bg-[#1a1a1a] text-gray-600 w-[125%]">
-      <article className="word-carousel-inner">
-        {words.concat(words).concat(words).map((word, index) => (
-          <div key={index} className="word-carousel-item">
-            {word}
-          </div>
-        ))}
-      </article>
-    </section>
-    </div>
   );
 };
 

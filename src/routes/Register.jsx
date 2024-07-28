@@ -43,36 +43,36 @@ const Register = () => {
 
   return (
     <>
-      <Title texto="Registrate" />
+      <Title texto="Sign Up" />
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-sm mx-auto">
         <FormInput
           type="email"
           placeholder="example@email.com"
           {...register("email", { required, pattern: patternEmail })}
-          label="Correo Electrónico"
+          label="Email"
           error={errors.email}
         />
         <FormInput
           type="password"
-          placeholder="123456"
+          placeholder="Type your password"
           {...register("password", {
             required,
             minLength,
             validate: validateTrim,
           })}
-          label="Contraseña"
+          label="Password"
           error={errors.password}
         />
         <FormInput
           type="password"
-          placeholder="123456"
+          placeholder="Repeat your password"
           {...register("repassword", {
             validate: validateEquals(getValues("password")),
           })}
-          label="Repita su contraseña"
+          label="Repeat Password"
           error={errors.repassword}
         />
-        <Button text="Registrarse" type="submit" loading={loading} />
+        <Button text="Sign Up" type="submit" loading={loading} />
       </form>
     </>
   );

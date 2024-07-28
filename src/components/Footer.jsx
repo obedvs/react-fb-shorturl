@@ -77,11 +77,11 @@ const Footer = () => {
           URLShort
         </span>
       </Link>
-      <section className="md:grid-cols-5 gap-y-4 grid grid-cols-2 pb-4 border-b border-gray-300">
+      <section className="flex flex-wrap justify-between w-full gap-4 pb-4 border-b border-gray-300">
         <List title="MENU" items={menu} />
         <List title="COMPANY" items={company} />
         <List title="SERVICES" items={services} />
-        <article className="md:col-span-2 md:block hidden">
+        <article className="md:w-2/5 w-full">
           <h5 className="mb-2 text-lg font-semibold">SUBSCRIBE TO NEWSLETTER</h5>
           <form
             className="flex items-center justify-center p-1 bg-transparent border border-gray-300 rounded-lg"
