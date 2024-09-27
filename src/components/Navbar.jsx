@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import { UserContext } from "../context/UserProvider.jsx";
+import Logo from "./Icons/Logo.jsx";
 
 const color = {
   'primary': 'hover:bg-blue-900 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 text-white bg-blue-700',
@@ -55,11 +56,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="dark:bg-gray-900 start-0 dark:border-gray-600 fixed top-0 z-20 w-full bg-white border-b border-gray-200">
+    <nav className="dark:bg-gray-900 start-0 dark:border-gray-600 bg-white/75 backdrop-blur-md fixed top-0 z-20 w-full border-b border-gray-200">
       <div className="md:px-10 flex items-center justify-between max-w-6xl p-4 mx-auto">
-        <Link to="/" className="flex items-center w-auto">
+        <Link to="/" className="flex items-center w-auto gap-2">
+          <Logo />
           <span className="whitespace-nowrap dark:text-white sm:text-2xl self-center text-lg font-semibold">
-            URLShort
+            url.abbr
           </span>
         </Link>
         <div className="sm:w-3/5 flex items-center justify-start w-auto">

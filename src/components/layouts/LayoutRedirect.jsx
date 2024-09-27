@@ -24,10 +24,10 @@ const LayoutRedirect = () => {
     })
   }, [nanoid]);
 
-  if (loading) return <div className="container mx-auto mt-20"><Title texto='Redirigiendo...' /></div>;
+  if (loading) return <div className="container mx-auto mt-24"><Title texto='Redirecting...' /></div>;
 
   return (
-    <div className="container mx-auto mt-20">
+    <div className="container mx-auto mt-24">
       <Outlet />
     </div>
   );

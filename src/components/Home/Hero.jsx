@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import html2canvas from 'html2canvas-pro';
+import html2canvas from "html2canvas-pro";
 
 import qrimage from "../../assets/qr-obed.png";
 import Button from "../Button.jsx";
@@ -13,7 +13,7 @@ const Hero = () => {
     const card = cardRef.current;
     try {
       const canvas = await html2canvas(card, {
-        backgroundColor: '#ffffff',
+        backgroundColor: "#ffffff",
         scale: 2,
       });
       const link = document.createElement("a");
@@ -53,28 +53,28 @@ const Hero = () => {
         <div className="md:w-4/5 relative w-full p-4 border-2 border-gray-200 rounded-lg">
           <header className="gap-x-2 flex flex-row items-center justify-between w-full mb-4">
             <h3 className="text-nowrap font-bold">QR CODE</h3>
-            {isButtonVisible && <Button
-              color="blue"
-              text="Download PNG"
-              onClick={handleDownloadPNG}
-              type="button"
-            />}
+            {isButtonVisible && (
+              <Button
+                color="blue"
+                text="Download PNG"
+                onClick={handleDownloadPNG}
+                type="button"
+              />
+            )}
           </header>
           <footer className="gap-x-4 flex items-center">
-            <img
-              src={qrimage}
-              alt="QR Code"
-              width={96}
-              height={96}
-            />
-            <div className="gap-y-2 grid font-semibold">
-              <a href="https://obedvega.vercel.app/" target="_blank">
-                obedvega.vercel.app
-              </a>
-              <time dateTime="2024-10-17">17 October 2024</time>
-            </div>
+            <img src={qrimage} alt="QR Code" width={96} height={96} />
+            <a
+              href="https://blog.obedvs.dev/"
+              target="_blank"
+              className="font-semibold"
+            >
+              blog.obedvs.dev
+            </a>
           </footer>
-          <div className="size-16 -bottom-10 right-10 absolute z-10 flex items-center justify-center text-3xl bg-blue-600 rounded-full">🔗</div>
+          <div className="size-16 -bottom-10 right-10 absolute z-10 flex items-center justify-center text-3xl bg-blue-600 rounded-full">
+            🔗
+          </div>
         </div>
         <div className="md:w-4/5 -z-20 w-full p-4 border-2 border-gray-200 rounded-lg">
           <header className="flex items-center justify-between w-full mb-4">
@@ -82,8 +82,8 @@ const Hero = () => {
           </header>
           <footer className="gap-x-4 flex items-center">
             <p className="w-full px-4 py-2 text-sm font-semibold bg-gray-100 rounded-lg">
-              <span className="text-blue-700">smll</span>
-              <span>.space/obedvega</span>
+              <span className="text-blue-700">url.abbr.social/</span>
+              <span>obedvega</span>
             </p>
           </footer>
         </div>

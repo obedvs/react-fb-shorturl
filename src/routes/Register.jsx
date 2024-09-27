@@ -54,7 +54,7 @@ const Register = () => {
         />
         <FormInput
           type="password"
-          placeholder="Type your password"
+          placeholder="********"
           {...register("password", {
             required,
             minLength,
@@ -65,7 +65,7 @@ const Register = () => {
         />
         <FormInput
           type="password"
-          placeholder="Repeat your password"
+          placeholder="********"
           {...register("repassword", {
             validate: validateEquals(getValues("password")),
           })}

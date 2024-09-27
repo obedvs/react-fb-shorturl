@@ -2,10 +2,10 @@ import Button from "../Button"
 
 const About = () => {
   return (
-    <div className="bg-[#101010] w-full">
-    <section className=" md:px-10 max-w-6xl px-2 py-10 mx-auto text-white">
-        <hr className="border-t border-gray-800"/>
-        <article className="md:flex-row md:justify-between gap-y-4 flex flex-col items-center my-8">
+    <div className="w-full bg-gradient-to-bl from-[#101010] to-[#5a5a5a]">
+    <section className="md:px-10 max-w-6xl px-2 py-10 mx-auto text-white">
+        {/* <hr className="border-t border-gray-800"/> */}
+        <article className="md:flex-row md:justify-between gap-y-4 flex flex-col items-center mb-8">
             <h4 className="text-3xl font-bold">HOW WE WORK 👇🏻</h4>
             <p className="md:w-1/2 md:text-start w-full text-sm text-center">All the products you need to build brand connections, manage links and QR Codes, and connect with audience everywhere, in a single united platform.</p>
         </article>

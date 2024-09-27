@@ -13,7 +13,7 @@ const FormInput = forwardRef(({type, placeholder, name, onChange, onBlur, label,
   return (
     <div className="w-full mb-2">
       <label className={`block mb-2 text-sm font-medium ${classLabel}`} htmlFor={name}>{label}</label>
-      <input type={type} placeholder={placeholder} name={name} onChange={onChange} onBlur={onBlur} ref={ref}
+      <input type={type} placeholder={placeholder} name={name} onChange={onChange} onBlur={onBlur} ref={ref} id={name} autoComplete="on"
         className={`border text-sm rounded-lg block w-full p-2.5 ${classInput}`} />
       <FormError error={error} />
     </div>

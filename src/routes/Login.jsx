@@ -52,7 +52,7 @@ const Login = () => {
         />
         <FormInput
           type="password"
-          placeholder="Type your password"
+          placeholder="********"
           {...register("password", { required })}
           label="Password"
           error={errors.password}

@@ -33,7 +33,7 @@ const Why = () => {
               </div>
             ))}
           </div>
-          <div className="md:w-1/3 flex items-end justify-start w-full p-4 bg-blue-700 border border-gray-200 rounded-lg">
+          <div className="md:w-1/3 bg-gradient-to-tl from-blue-600 from-55% to-blue-400 flex items-end justify-start w-full p-4 border border-gray-200 rounded-lg">
             <h5 className="text-2xl font-bold text-white">SSL and redirection url with no worries</h5>
           </div>
         </article>
