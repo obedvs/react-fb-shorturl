@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "./Button";
+import Logo from "./Icons/Logo";
 
 const menu = [
   {
@@ -18,7 +19,7 @@ const menu = [
     title: "Resource",
     link: "/#",
   },
-]
+];
 
 const company = [
   {
@@ -37,7 +38,7 @@ const company = [
     title: "Partner Program",
     link: "/#",
   },
-]
+];
 
 const services = [
   {
@@ -52,7 +53,7 @@ const services = [
     title: "Subscription",
     link: "/#",
   },
-]
+];
 
 const List = ({ title, items }) => {
   return (
@@ -61,20 +62,23 @@ const List = ({ title, items }) => {
       <ul className="grid gap-1 text-gray-500">
         {items.map((item, index) => (
           <li key={index}>
-            <Link className="hover:text-gray-900" to={item.link}>{item.title}</Link>
+            <Link className="hover:text-gray-900" to={item.link}>
+              {item.title}
+            </Link>
           </li>
         ))}
       </ul>
     </article>
   );
-}
+};
 
 const Footer = () => {
   return (
     <footer className="md:p-10 gap-y-4 flex flex-col items-start w-full max-w-6xl px-2 py-4 mx-auto">
-      <Link to="/" className="flex items-center w-auto">
+      <Link to="/" className="gap-x-2 flex items-center w-auto">
+        <Logo />
         <span className="whitespace-nowrap sm:text-2xl self-center text-lg font-semibold">
-          URLShort
+          url.abbr
         </span>
       </Link>
       <section className="flex flex-wrap justify-between w-full gap-4 pb-4 border-b border-gray-300">
@@ -82,7 +86,9 @@ const Footer = () => {
         <List title="COMPANY" items={company} />
         <List title="SERVICES" items={services} />
         <article className="md:w-2/5 w-full">
-          <h5 className="mb-2 text-lg font-semibold">SUBSCRIBE TO NEWSLETTER</h5>
+          <h5 className="mb-2 text-lg font-semibold">
+            SUBSCRIBE TO NEWSLETTER
+          </h5>
           <form
             className="flex items-center justify-center p-1 bg-transparent border border-gray-300 rounded-lg"
             onSubmit={(e) => e.preventDefault()}
@@ -99,11 +105,15 @@ const Footer = () => {
       </section>
       <section className="md:flex-row flex flex-col items-center justify-between w-full gap-2 text-gray-500">
         <p className="text-center">
-          &copy; 2024 URLShort. All rights reserved.
+          &copy; 2024 url.abbr. All rights reserved.
         </p>
         <div className="flex gap-2">
-          <Link className="hover:text-gray-900" to='/#'>Terms of Service</Link>
-          <Link className="hover:text-gray-900" to='/#'>Privacy Policy</Link>
+          <Link className="hover:text-gray-900" to="/#">
+            Terms of Service
+          </Link>
+          <Link className="hover:text-gray-900" to="/#">
+            Privacy Policy
+          </Link>
         </div>
       </section>
     </footer>

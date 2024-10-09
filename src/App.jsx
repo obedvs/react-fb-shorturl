@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar.jsx";
 import Login from "./routes/Login.jsx";
 import Dashboard from "./routes/Dashboard.jsx";
 import Register from "./routes/Register.jsx";
-import Perfil from "./routes/Perfil.jsx";
+// import Perfil from "./routes/Perfil.jsx";
 import NotFound from "./routes/NotFound.jsx";
 
 import LayoutRequireAuth from "./components/layouts/LayoutRequireAuth.jsx";
