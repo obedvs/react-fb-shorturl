@@ -60,9 +60,9 @@ const Navbar = () => {
       <div className="md:px-10 flex items-center justify-between max-w-6xl p-4 mx-auto">
         <Link to="/" className="flex items-center w-auto gap-2">
           <Logo />
-          <span className="whitespace-nowrap dark:text-white sm:text-2xl self-center text-lg font-semibold">
+          <h1 className="whitespace-nowrap dark:text-white sm:text-2xl self-center text-lg font-semibold">
             url.abbr
-          </span>
+          </h1>
         </Link>
         <div className="sm:w-3/5 flex items-center justify-start w-auto">
           <ul className="sm:gap-x-2 flex items-center font-medium">
