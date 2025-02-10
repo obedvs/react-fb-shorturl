@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import Button from "./Button";
-import Logo from "./Icons/Logo";
+
+import Button from "@/components/Button";
+import Logo from "@/components/Icons/Logo";
 
 const menu = [
   {
@@ -55,7 +56,13 @@ const services = [
   },
 ];
 
-const List = ({ title, items }) => {
+const List = ({
+  title,
+  items,
+}: {
+  title: string;
+  items: { title: string; link: string }[];
+}) => {
   return (
     <article>
       <h5 className="mb-2 text-lg font-semibold">{title}</h5>
@@ -74,14 +81,14 @@ const List = ({ title, items }) => {
 
 const Footer = () => {
   return (
-    <footer className="md:p-10 gap-y-4 flex flex-col items-start w-full max-w-6xl px-2 py-4 mx-auto">
-      <Link to="/" className="gap-x-2 flex items-center w-auto">
+    <footer className="md:p-10 flex flex-col gap-y-4 items-start px-2 py-4 mx-auto w-full max-w-6xl">
+      <Link to="/" className="flex gap-x-2 items-center w-auto">
         <Logo />
-        <span className="whitespace-nowrap sm:text-2xl self-center text-lg font-semibold">
+        <span className="sm:text-2xl self-center text-lg font-semibold whitespace-nowrap">
           url.abbr
         </span>
       </Link>
-      <section className="flex flex-wrap justify-between w-full gap-4 pb-4 border-b border-gray-300">
+      <section className="flex flex-wrap gap-4 justify-between pb-4 w-full border-b border-gray-300">
         <List title="MENU" items={menu} />
         <List title="COMPANY" items={company} />
         <List title="SERVICES" items={services} />
@@ -90,7 +97,7 @@ const Footer = () => {
             SUBSCRIBE TO NEWSLETTER
           </h5>
           <form
-            className="flex items-center justify-center p-1 bg-transparent border border-gray-300 rounded-lg"
+            className="flex justify-center items-center p-1 bg-transparent rounded-lg border border-gray-300"
             onSubmit={(e) => e.preventDefault()}
           >
             <input
@@ -103,7 +110,7 @@ const Footer = () => {
           </form>
         </article>
       </section>
-      <section className="md:flex-row flex flex-col items-center justify-between w-full gap-2 text-gray-500">
+      <section className="md:flex-row flex flex-col gap-2 justify-between items-center w-full text-gray-500">
         <p className="text-center">
           &copy; 2024 url.abbr. All rights reserved.
         </p>

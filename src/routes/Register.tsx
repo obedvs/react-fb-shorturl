@@ -1,14 +1,15 @@
+import { FirebaseError } from "firebase/app";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
-import { UserContext } from "../context/UserProvider.jsx";
-import { erroresFirebase } from "../utils/erroresFirebase.js";
-import { formValidate } from "../utils/formValidate.js";
+import { formValidate } from "@/utils/formValidate";
+import { UserContext } from "@/context/UserProvider";
+import { erroresFirebase } from "@/utils/erroresFirebase";
 
-import FormInput from "../components/FormInput.jsx";
-import Title from "../components/Title.jsx";
-import Button from "../components/Button.jsx";
+import Title from "@/components/Title";
+import Button from "@/components/Button";
+import FormInput from "@/components/FormInput";
 
 const Register = () => {
   const { registerUser } = useContext(UserContext);
@@ -27,15 +28,22 @@ const Register = () => {
   const { required, patternEmail, minLength, validateTrim, validateEquals } =
     formValidate();
 
-  const onSubmit = async ({ email, password }) => {
+  const onSubmit = async ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
     try {
       setLoading(true);
       await registerUser(email, password);
       navigate("/login");
     } catch (error) {
-      console.log(error.code);
-      const { code, message } = erroresFirebase(error.code);
-      setError(code, { type: "custom", message });
+      if (error instanceof FirebaseError) {
+        const { code, message } = erroresFirebase(error.code);
+        setError(code, { type: "custom", message });
+      }
     } finally {
       setLoading(false);
     }
@@ -44,7 +52,10 @@ const Register = () => {
   return (
     <>
       <Title texto="Sign Up" />
-      <form onSubmit={handleSubmit(onSubmit)} className="max-w-sm mx-auto">
+      <form
+        onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}
+        className="mx-auto max-w-sm"
+      >
         <FormInput
           type="email"
           placeholder="example@email.com"

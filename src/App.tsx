@@ -1,20 +1,20 @@
 import { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import { UserContext } from "./context/UserProvider.jsx";
+import { UserContext } from "@/context/UserProvider";
 
-import Navbar from "./components/Navbar.jsx";
+import Navbar from "@/components/Navbar";
 
-import Login from "./routes/Login.jsx";
-import Dashboard from "./routes/Dashboard.jsx";
-import Register from "./routes/Register.jsx";
+import Login from "@/routes/Login";
+import Dashboard from "@/routes/Dashboard";
+import Register from "@/routes/Register";
+import NotFound from "@/routes/NotFound";
 // import Perfil from "./routes/Perfil.jsx";
-import NotFound from "./routes/NotFound.jsx";
 
-import LayoutRequireAuth from "./components/layouts/LayoutRequireAuth.jsx";
-import LayoutContainerForm from "./components/layouts/LayoutContainerForm.jsx";
-import LayoutRedirect from "./components/layouts/LayoutRedirect.jsx";
-import Home from "./routes/Home.jsx";
+import LayoutRequireAuth from "@/components/layouts/LayoutRequireAuth";
+import LayoutContainerForm from "@/components/layouts/LayoutContainerForm";
+import LayoutRedirect from "@/components/layouts/LayoutRedirect";
+import Home from "@/routes/Home";
 
 const App = () => {
   const { user } = useContext(UserContext);
@@ -27,8 +27,7 @@ const App = () => {
     <>
       <Navbar />
       <Routes>
-        
-        <Route path="/" element={<Home />}/>
+        <Route path="/" element={<Home />} />
 
         <Route path="/dashboard" element={<LayoutRequireAuth />}>
           <Route index element={<Dashboard />} />
@@ -43,7 +42,6 @@ const App = () => {
         <Route path="/:nanoid" element={<LayoutRedirect />}>
           <Route index element={<NotFound />} />
         </Route>
-
       </Routes>
     </>
   );

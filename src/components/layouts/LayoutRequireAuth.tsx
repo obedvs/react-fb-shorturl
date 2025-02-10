@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-import { UserContext } from "../../context/UserProvider.jsx";
+import { UserContext } from "@/context/UserProvider";
 
 const LayoutRequireAuth = () => {
   const { user } = useContext(UserContext);

@@ -1,8 +1,63 @@
-# React + Vite
+# URL Shortener | url.abbr
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Una aplicación web moderna para acortar URLs construida con React + TypeScript y Firebase.
 
-Currently, two official plugins are available:
+## 🚀 Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Acortamiento de URLs
+- Autenticación de usuarios
+- Dashboard personalizado
+- Diseño responsive
+- Tema claro/oscuro
+- Interfaz moderna con Tailwind CSS
+
+## 🛠️ Tecnologías
+
+- React 18
+- TypeScript
+- Firebase (Auth & Firestore)
+- Tailwind CSS
+- React Router DOM
+- React Hook Form
+- Vite
+
+## 📦 Instalación
+
+1. Clona el repositorio
+
+```bash
+bash
+git clone https://github.com/obedvs/react-fb-shorturl.git
+cd react-fb-shorturl
+```
+
+2. Instala las dependencias
+
+```bash
+npm install
+```
+
+3. Configura las variables de entorno
+
+```bash
+cp .env.example .env
+```
+
+Añade tus credenciales de Firebase en el archivo `.env`
+
+4. Inicia el servidor de desarrollo
+
+```bash
+npm run dev
+```
+
+## 🔧 Scripts Disponibles
+
+- `npm run dev`: Inicia el servidor de desarrollo
+- `npm run build`: Construye la aplicación para producción
+- `npm run preview`: Vista previa de la build de producción
+- `npm run lint`: Ejecuta el linter
+
+## 👤 Autor
+
+Paul Obed Vega Soto

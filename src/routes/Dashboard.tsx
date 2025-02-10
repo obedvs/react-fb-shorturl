@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import html2canvas from "html2canvas-pro";
 
-import { useFirestore } from "../hooks/useFirestore.js";
-import { formValidate } from "../utils/formValidate.js";
+import { useFirestore } from "@/hooks/useFirestore";
+import { formValidate } from "@/utils/formValidate";
 
-import Title from "../components/Title.jsx";
-import Button from "../components/Button.jsx";
-import FormInput from "../components/FormInput.jsx";
+import Title from "../components/Title.js";
+import Button from "../components/Button.js";
+import FormInput from "../components/FormInput.js";
 import { erroresFirebase } from "../utils/erroresFirebase.js";
+import { FirebaseError } from "firebase/app";
 
 const Dashboard = () => {
   const { data, error, loading, getData, addData, deleteData, updateData } =
@@ -25,8 +26,8 @@ const Dashboard = () => {
 
   const { required, patternUrl } = formValidate();
 
-  const [copy, setCopy] = useState({});
-  const [newOriginID, setNewOriginID] = useState();
+  const [copy, setCopy] = useState<Record<string, boolean>>({});
+  const [newOriginID, setNewOriginID] = useState<string | null>(null);
 
   useEffect(() => {
     getData();
@@ -34,7 +35,7 @@ const Dashboard = () => {
 
   if (error) return <p>Error: {error}</p>;
 
-  const onSubmit = ({ url }) => {
+  const onSubmit = ({ url }: { url: string }) => {
     if (!url.startsWith("https://")) {
       setError("url", {
         type: "manual",
@@ -51,34 +52,39 @@ const Dashboard = () => {
       }
       resetField("url");
     } catch (error) {
-      const { code, message } = erroresFirebase(error.code);
-      setError(code, { type: "manual", message });
+      if (error instanceof FirebaseError) {
+        const { code, message } = erroresFirebase(error.code);
+        setError(code, { type: "manual", message });
+      }
     }
   };
 
-  const handleDelete = (nanoid) => {
+  const handleDelete = (nanoid: string) => {
     deleteData(nanoid);
   };
 
-  const handleEdit = (nanoid, origin) => {
+  const handleEdit = (nanoid: string, origin: string) => {
     setValue("url", origin);
     setNewOriginID(nanoid);
   };
 
   const pathUrl = window.location.origin;
 
-  const handleCopy = async (nanoid) => {
+  const handleCopy = async (nanoid: string) => {
     await navigator.clipboard.writeText(`${pathUrl}/${nanoid}`);
     setCopy((prev) => ({ ...prev, [nanoid]: true }));
-    setInterval(() => {
+    const interval = setInterval(() => {
       setCopy((prev) => ({ ...prev, [nanoid]: false }));
-      return clearInterval();
+      return clearInterval(interval);
     }, 1500);
   };
 
-  const handleDownloadPNG = async (nanoid) => {
+  const handleDownloadPNG = async (nanoid: string) => {
     const card = document.getElementById(nanoid);
     try {
+      if (!card) {
+        throw new Error("Card element not found");
+      }
       const canvas = await html2canvas(card, {
         backgroundColor: "#ffffff",
         scale: 2,
@@ -86,6 +92,7 @@ const Dashboard = () => {
       const link = document.createElement("a");
       link.href = canvas.toDataURL("image/png");
       link.download = "qr-card.png";
+
       link.click();
     } catch (error) {
       console.error(error);
@@ -93,12 +100,12 @@ const Dashboard = () => {
   };
 
   return (
-    <section className="md:px-10 max-w-6xl px-2 mx-auto mt-24">
+    <section className="md:px-10 px-2 mx-auto mt-24 max-w-6xl">
       <Title texto="Short your URL" />
 
       <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="gap-x-4 flex flex-col items-center justify-center w-full max-w-lg px-4 mx-auto mb-4"
+        onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}
+        className="flex flex-col gap-x-4 justify-center items-center px-4 mx-auto mb-4 w-full max-w-lg"
       >
         <FormInput
           type="text"
@@ -119,17 +126,17 @@ const Dashboard = () => {
         )}
       </form>
 
-      <article className="md:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-4 grid w-full max-w-6xl grid-cols-1 mx-auto">
+      <article className="md:grid-cols-2 lg:grid-cols-3 grid grid-cols-1 gap-x-4 gap-y-6 mx-auto w-full max-w-6xl">
         {loading.getData ? (
           <p>Loading...</p>
         ) : (
-          data.map(({ nanoid, origin, uid }) => (
+          data.map(({ nanoid, origin }) => (
             <article
-              className="gap-y-2 md:items-end z-10 flex flex-col items-center w-full text-black"
+              className="md:items-end flex z-10 flex-col gap-y-2 items-center w-full text-black"
               key={nanoid}
             >
-              <div className="rounded-2xl relative w-full p-4 border-2 border-gray-200 shadow">
-                <header className="flex flex-row items-center justify-between w-full gap-2 mb-4">
+              <div className="relative p-4 w-full rounded-2xl border-2 border-gray-200 shadow">
+                <header className="flex flex-row gap-2 justify-between items-center mb-4 w-full">
                   <h3 className="text-nowrap w-3/4 font-bold">URL</h3>
                   <Button
                     color="blue"
@@ -138,7 +145,7 @@ const Dashboard = () => {
                     type="button"
                   />
                 </header>
-                <footer className="gap-x-4 flex items-center">
+                <footer className="flex gap-x-4 items-center">
                   <a
                     href={origin}
                     target="_blank"
@@ -149,22 +156,22 @@ const Dashboard = () => {
                   </a>
                   {/* <img src={qrimage} alt="QR Code" width={96} height={96} /> */}
                 </footer>
-                <div className="size-16 -bottom-10 right-10 absolute z-10 flex items-center justify-center text-3xl bg-blue-600 rounded-full">
+                <div className="size-16 flex absolute right-10 -bottom-10 z-10 justify-center items-center text-3xl bg-blue-600 rounded-full">
                   🔗
                 </div>
               </div>
               <div
-                className="-z-20 rounded-2xl relative w-full p-4 border-2 border-gray-200 shadow"
+                className="-z-20 relative p-4 w-full rounded-2xl border-2 border-gray-200 shadow"
                 id={nanoid}
               >
-                <header className="flex items-center justify-between w-full mb-4">
+                <header className="flex justify-between items-center mb-4 w-full">
                   <h3 className="font-bold">CUSTOM LINK</h3>
                 </header>
-                <footer className="gap-x-4 flex items-center">
-                  <div className="w-full px-4 py-2 bg-gray-100 rounded-lg">
+                <footer className="flex gap-x-4 items-center">
+                  <div className="px-4 py-2 w-full bg-gray-100 rounded-lg">
                     <a
                       href={`${pathUrl}/${nanoid}`}
-                      className=" text-sm font-semibold"
+                      className="text-sm font-semibold"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -174,8 +181,8 @@ const Dashboard = () => {
                   </div>
                 </footer>
               </div>
-              <div className="-z-10 rounded-2xl relative w-full p-4 bg-white border border-gray-200 shadow">
-                <div className="size-16 -top-10 right-10 absolute z-10 flex items-center justify-center text-3xl bg-blue-600 rounded-full">
+              <div className="-z-10 relative p-4 w-full bg-white rounded-2xl border border-gray-200 shadow">
+                <div className="size-16 flex absolute -top-10 right-10 z-10 justify-center items-center text-3xl bg-blue-600 rounded-full">
                   🔗
                 </div>
                 <h4 className="mb-4 font-bold tracking-tight">OPTIONS</h4>

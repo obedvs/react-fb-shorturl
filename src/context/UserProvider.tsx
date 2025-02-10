@@ -6,12 +6,19 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 
-import { auth } from "../firebase.js";
+import { auth } from "@/firebase.ts";
+import { User, UserContextType } from "@/types/index.ts";
 
-export const UserContext = createContext();
+export const UserContext = createContext<UserContextType>({
+  user: null,
+  setUser: () => {},
+  registerUser: () => Promise.resolve(),
+  loginUser: () => Promise.resolve(),
+  signOutUser: () => Promise.resolve(),
+});
 
-const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(false);
+const UserProvider = ({ children }: { children: React.ReactNode }) => {
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const unsuscribe = onAuthStateChanged(auth, (user) => {
@@ -26,10 +33,10 @@ const UserProvider = ({ children }) => {
     return () => unsuscribe();
   }, []);
 
-  const registerUser = (email, password) =>
+  const registerUser = (email: string, password: string) =>
     createUserWithEmailAndPassword(auth, email, password);
 
-  const loginUser = (email, password) =>
+  const loginUser = (email: string, password: string) =>
     signInWithEmailAndPassword(auth, email, password);
 
   const signOutUser = () => signOut(auth);

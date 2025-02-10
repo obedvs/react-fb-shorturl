@@ -1,17 +1,24 @@
 import { useContext, useState } from "react";
+import { FirebaseError } from "firebase/app";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
-import { UserContext } from "../context/UserProvider.jsx";
-import { formValidate } from "../utils/formValidate.js";
-import { erroresFirebase } from "../utils/erroresFirebase.js";
+import { UserContext } from "@/context/UserProvider";
+import { formValidate } from "@/utils/formValidate";
+import { erroresFirebase } from "@/utils/erroresFirebase";
 
-import FormInput from "../components/FormInput.jsx";
-import Title from "../components/Title.jsx";
-import Button from "../components/Button.jsx";
+import Title from "@/components/Title";
+import Button from "@/components/Button";
+import FormInput from "@/components/FormInput";
+
+type LoginFormData = {
+  email: string;
+  password: string;
+};
 
 const Login = () => {
   const { loginUser } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -25,15 +32,17 @@ const Login = () => {
 
   const { required, patternEmail } = formValidate();
 
-  const onSubmit = async ({ email, password }) => {
+  const onSubmit = async ({ email, password }: LoginFormData) => {
     try {
       setLoading(true);
+
       await loginUser(email, password);
       navigate("/dashboard");
     } catch (error) {
-      console.log(error.code);
-      const { code, message } = erroresFirebase(error.code);
-      setError(code, { type: "custom", message });
+      if (error instanceof FirebaseError) {
+        const { code, message } = erroresFirebase(error.code);
+        setError(code, { type: "custom", message });
+      }
     } finally {
       setLoading(false);
     }
@@ -42,7 +51,10 @@ const Login = () => {
   return (
     <>
       <Title texto="Log In" />
-      <form onSubmit={handleSubmit(onSubmit)} className="max-w-sm mx-auto">
+      <form
+        onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}
+        className="mx-auto max-w-sm"
+      >
         <FormInput
           type="email"
           placeholder="example@email.com"
@@ -52,7 +64,6 @@ const Login = () => {
         />
         <FormInput
           type="password"
-          placeholder="********"
           {...register("password", { required })}
           label="Password"
           error={errors.password}
